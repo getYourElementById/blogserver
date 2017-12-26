@@ -7,12 +7,4 @@ let connection = mysql.createConnection({
   database : 'mydatabase'
 });
   
-var sqlObj = {
-	connection:connection.connect(),
-	query:function(query,cd){
-		connection.query(query, cd);
-	},
-	end:connection.end()
-}
-
-module.exports = sqlObj;
+module.exports = connection;

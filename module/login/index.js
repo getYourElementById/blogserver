@@ -1,36 +1,30 @@
-// import mysql from '../mysql'
-import mysql from 'mysql'
-
-var  connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '123456',
-  database : 'mydatabase'
-});
-console.log(mysql)
-  
-// var sqlObj = {
-// 	connection:connection.connect(),
-// 	query:function(query,cd){
-// 		connection.query(query, cd);
-// 	},
-// 	end:connection.end()
-// }
-
+import mysql from '../mysql'
 
 module.exports = function(req,res){
-	console.log('访问login……');
+	console.log('访问login……')
 
-	let query = 'SELECTED * FROM usertable'
-	connection.connection();
-	connection.query(query,(error,res,file)=>{
-		if (error){
-			console.log('[SELECT ERROR] - ',err.message);
-            return;
+	let postUserName = req.body.userName;
+	let postPassWord = req.body.passWord;
+
+	let sql = 'SELECT * FROM usertable WHERE name ='+postUserName;
+
+	mysql.query(sql,function(err, data){
+		if(err){
+			console.log('数据库错误');
+			res.send('数据库错误');
+		}else{
+			if(data.length == 0){
+				console.log('用户名错误');
+				res.send('用户名错误');
+			}else{
+				if(data[0].password == postPassWord){
+					console.log('登录成功');
+					res.send('登录成功');
+				}else{
+					console.log('密码错误');
+					res.send('密码错误');
+				}
+			}
 		}
-		console.log(res)
 	});
-	connection.end();
-
-	res.send('登录成功！')
 }
