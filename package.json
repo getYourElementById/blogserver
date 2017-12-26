@@ -1,0 +1,24 @@
+{
+  "name": "blogserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getYourElementById/blogserver.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/getYourElementById/blogserver/issues"
+  },
+  "homepage": "https://github.com/getYourElementById/blogserver#readme",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "express": "^4.16.2"
+  }
+}
