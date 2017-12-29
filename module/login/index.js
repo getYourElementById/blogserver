@@ -1,6 +1,6 @@
 import mysql from '../mysql'
 
-module.exports = function(req,res){
+module.exports = (req,res)=>{
 	console.log('访问login……')
 
 	let postUserName = req.body.userName;
@@ -8,7 +8,7 @@ module.exports = function(req,res){
 
 	let sql = 'SELECT * FROM usertable WHERE name ='+postUserName;
 
-	mysql.query(sql,function(err, data){
+	mysql.query(sql,(err, data)=>{
 		if(err){
 			console.log('数据库错误');
 			res.send('数据库错误');
