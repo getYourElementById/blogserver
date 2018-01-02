@@ -8,6 +8,8 @@ module.exports = (req,res)=>{
 
 	let sql = 'SELECT * FROM usertable WHERE name ='+postUserName;
 
+
+
 	mysql.query(sql,(err, data)=>{
 		if(err){
 			console.log('数据库错误');
@@ -19,7 +21,10 @@ module.exports = (req,res)=>{
 			}else{
 				if(data[0].password == postPassWord){
 					console.log('登录成功');
-					res.send('登录成功');
+					res.send({
+						msg:'登录成功',
+						data:data[0]
+					});
 				}else{
 					console.log('密码错误');
 					res.send('密码错误');
