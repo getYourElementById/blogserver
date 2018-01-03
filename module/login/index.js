@@ -3,10 +3,12 @@ import mysql from '../mysql'
 module.exports = (req,res)=>{
 	console.log('访问login……')
 
-	let postUserName = req.body.userName;
+	let postUserName = "'" + req.body.userName + "'";
 	let postPassWord = req.body.passWord;
 
 	let sql = 'SELECT * FROM usertable WHERE name ='+postUserName;
+
+	console.log(sql)
 
 
 

@@ -43,7 +43,7 @@ function getFuc(req,res){
 	let name;
 	if(req.query){
 		let resMsg = req.query;
-		name = resMsg.name;
+		name = "'" + resMsg.name + "'";
 	}else{
 		return res.send('参数错误！')
 	}
