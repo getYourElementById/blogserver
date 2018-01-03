@@ -28,7 +28,7 @@ app.post('/blog/article/save',aritcle.save);
 // 文章获取接口
 app.get('/blog/article/save',aritcle.get);
 
-// 文章获取接口
+// 文章删除接口
 app.get('/blog/article/delete',aritcle.dele);
 
 app.listen(8919,()=>{
