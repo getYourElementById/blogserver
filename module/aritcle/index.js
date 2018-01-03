@@ -2,7 +2,8 @@ import mysql from '../mysql'
 
 var aritcle = {
 	save:saveFuc,
-	get:getFuc
+	get:getFuc,
+	dele:deleFuc
 }
 
 
@@ -46,7 +47,7 @@ function getFuc(req,res){
 	}else{
 		return res.send('参数错误！')
 	}
-	let sql = "SELECT * FROM aritcle WHERE NAME = "+ name + " order by createDate desc";
+	let sql = "SELECT * FROM aritcle WHERE NAME = "+ name + " order by createDate desc limit 0,10";
 	mysql.query(sql,(err,data)=>{
 		if(err){
 			console.log('数据库错误');
@@ -58,6 +59,31 @@ function getFuc(req,res){
 				msg:'获取成功！',
 				data:data
 			})
+		}
+	})
+}
+
+function deleFuc(req,res){
+	let id;
+	if(req.query){
+		id = req.query.sqlId;
+	}else{
+		console.log('参数不能为空!')
+		res.send('参数不能为空！')
+		return;
+	}
+
+	let sql = "DELETE FROM aritcle WHERE sqlId = "+id;
+	mysql.query(sql,(err,data)=>{
+		if(err){
+			console.log('数据库错误');
+			res.send('数据可错误');
+		}else{
+			console.log('删除成功！');
+			res.send({
+				msg:'删除成功！',
+				data:1
+			});
 		}
 	})
 }
